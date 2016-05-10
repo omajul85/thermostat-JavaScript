@@ -11,6 +11,13 @@ describe('Thermostat:', function(){
 		expect(thermostat.getTemperature()).toEqual(20);
 	});
 
+	it('resets the temperature to default', function(){
+		thermostat._temperature = 25;
+		expect(thermostat.getTemperature()).toEqual(25);
+		thermostat.reset();
+		expect(thermostat.getTemperature()).toEqual(20);
+	});
+
 	it('power saving mode in on by default', function(){
 		expect(thermostat.savingModeOn).toBeTruthy();
 	});

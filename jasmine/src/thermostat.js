@@ -1,13 +1,18 @@
 'use strict';
 
 function Thermostat(){
-	this._temperature = 20;
 	this._MINIMUM_TEMPERATURE = 10;
+	this._DEFAULT_TEMPERATURE = 20;
 	this.turnOnSavingMode();
+	this.reset();
 }
 
 Thermostat.prototype.getTemperature = function() {
 	return this._temperature;
+};
+
+Thermostat.prototype.reset = function() {
+	this._temperature = this._DEFAULT_TEMPERATURE;
 };
 
 Thermostat.prototype.up = function() {
