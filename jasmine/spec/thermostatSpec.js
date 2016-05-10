@@ -54,4 +54,21 @@ describe('Thermostat:', function(){
 			expect(thermostat.getTemperature()).toEqual(32);
 		});
 	});
+
+	describe('Energy usage:', function(){
+		it('displays Low when temperature is less than 18 degrees', function(){
+			thermostat._temperature = 17;
+			expect(thermostat.energyUsage()).toEqual('Low');
+		});
+
+		it('displays Medium when temperature is between 18 and 24 degrees', function(){
+			thermostat._temperature = 18;
+			expect(thermostat.energyUsage()).toEqual('Medium');
+		});
+
+		it('displays High when temperature is greater than 24 degrees', function(){
+			thermostat._temperature = 25;
+			expect(thermostat.energyUsage()).toEqual('High');
+		});
+	});
 });

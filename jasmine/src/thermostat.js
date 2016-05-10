@@ -40,3 +40,13 @@ Thermostat.prototype.turnOffSavingMode = function() {
 	this.savingModeOn = false;
 	this._MAXIMUM_TEMPERATURE = 32;
 };
+
+Thermostat.prototype.energyUsage = function() {
+	if(this.getTemperature() < 18){
+		return 'Low'
+	} else if(this.getTemperature() >=18 && this.getTemperature() < 25){
+		return 'Medium'
+	} else {
+		return 'High'
+	}
+};
