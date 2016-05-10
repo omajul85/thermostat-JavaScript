@@ -11,6 +11,10 @@ describe('Thermostat', function(){
 		expect(thermostat.getTemperature()).toEqual(20);
 	});
 
+	it('power saving mode in on by default', function(){
+		expect(thermostat.savingModeOn).toBeTruthy();
+	});
+
 	it('increases the temperature with the up button', function(){
 		thermostat.up();
 		expect(thermostat.getTemperature()).toEqual(21);
