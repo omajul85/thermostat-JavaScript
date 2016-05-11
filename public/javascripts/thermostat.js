@@ -33,6 +33,9 @@ Thermostat.prototype.down = function() {
 Thermostat.prototype.toggleSavingMode = function() {
 	this.savingModeOn = !this.savingModeOn;
 	this._MAXIMUM_TEMPERATURE = this.savingModeOn ? this._MAX_TEMPERATURE_PSM_ON : this._MAX_TEMPERATURE_PSM_OFF;
+	if(this.savingModeOn && this.getTemperature() > this._MAX_TEMPERATURE_PSM_ON){
+		this._temperature = this._MAX_TEMPERATURE_PSM_ON;
+	}
 };
 
 // Thermostat.prototype.turnOnSavingMode = function() {
