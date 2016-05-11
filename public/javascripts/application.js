@@ -1,10 +1,12 @@
 $(document).ready(function(){
 	var thermostat = new Thermostat();
-	$("#temperature").text(thermostat.getTemperature());
+	setColor(thermostat.energyUsage());
+	$("#temperature").html(formatTemperature(thermostat));
 	
 	$("#PSM").click(function(){
 		thermostat.toggleSavingMode();
-		$("#temperature").text(thermostat.getTemperature());
+		setColor(thermostat.energyUsage());
+		$("#temperature").html(formatTemperature(thermostat));
 		if($(this).attr("src") == "public/images/psm_off.png"){
 			$(this).attr("src", "public/images/psm_on.png");
 			$("#power-saving-status").text("ON");
@@ -16,16 +18,35 @@ $(document).ready(function(){
 
 	$("#up").click(function(){
 		thermostat.up();
-		$("#temperature").text(thermostat.getTemperature());
+		setColor(thermostat.energyUsage());
+		$("#temperature").html(formatTemperature(thermostat));
 	});
 
 	$("#down").click(function(){
 		thermostat.down();
-		$("#temperature").text(thermostat.getTemperature());
+		setColor(thermostat.energyUsage());
+		$("#temperature").html(formatTemperature(thermostat));
 	});
 
 	$("#reset").click(function(){
 		thermostat.reset();
-		$("#temperature").text(thermostat.getTemperature());
+		setColor(thermostat.energyUsage());
+		$("#temperature").html(formatTemperature(thermostat));
 	});
 });
+
+function setColor(energyUsage) {
+	if (energyUsage == "Low") {
+		$("#temperature").css("color", "#4CAF50");
+	} else if(energyUsage == "Medium"){
+		$("#temperature").css("color", "#EAEA2A");
+	} else {
+		$("#temperature").css("color", "#DE4343");
+	}
+}
+
+function formatTemperature(thermostat){
+	var txt = "";
+	txt += "<h1>" + thermostat.getTemperature() + " &#8451;</h1>"
+	return txt;
+}
