@@ -48,7 +48,8 @@ describe('Thermostat:', function(){
 
 	describe('Power saving mode is OFF:', function(){
 		it('limits the maximum temperature to 32 degrees', function(){
-			thermostat.turnOffSavingMode();
+			//this turns off the PSM since it was on by default
+			thermostat.toggleSavingMode();
 			thermostat._temperature = 32;
 			thermostat.up();
 			expect(thermostat.getTemperature()).toEqual(32);
