@@ -8,9 +8,17 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 	<script src="public/javascripts/thermostat.js"></script>
   <script src="public/javascripts/application.js"></script>
+  <script src="public/javascripts/wunderground.js"></script>
 </head>
 <body>
 	<section>
+		Do you want to know the temperature somewhere ?
+		<form id="select-location">
+			<input id="current-country" type="text" placeholder="Enter a country"></input>
+			<input id="current-city" type="text" placeholder="Enter a city"></input>
+			<input type="submit"></input>
+		</form>
+		<h1 id="current-temperature"></h1>
 		<h1 id="temperature"></h1>
 		<p>
 			<input type="image" alt="Temperature down" id="down" src="public/images/down.png"/>
