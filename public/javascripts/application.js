@@ -37,7 +37,7 @@ $(document).ready(function(){
 
 	function formatTemperature(){
 		var txt = "";
-		txt += "<h1>" + thermostat.getTemperature() + " &#8451;</h1>"
+		txt += "<h1>" + thermostat.getTemperature() + " &#8451;</h1>";
 		return txt;
 	}
 });

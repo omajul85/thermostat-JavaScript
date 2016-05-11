@@ -34,19 +34,9 @@ Thermostat.prototype.toggleSavingMode = function() {
 	this.savingModeOn = !this.savingModeOn;
 	this._MAXIMUM_TEMPERATURE = this.savingModeOn ? this._MAX_TEMPERATURE_PSM_ON : this._MAX_TEMPERATURE_PSM_OFF;
 	if(this.savingModeOn && this.getTemperature() > this._MAX_TEMPERATURE_PSM_ON){
-		this._temperature = this._MAX_TEMPERATURE_PSM_ON;
+		this._temperature = this._MAX_TEMPERATURE_PSM_ON
 	}
 };
-
-// Thermostat.prototype.turnOnSavingMode = function() {
-// 	this.savingModeOn = true;
-// 	this._MAXIMUM_TEMPERATURE = 25;
-// };
-
-// Thermostat.prototype.turnOffSavingMode = function() {
-// 	this.savingModeOn = false;
-// 	this._MAXIMUM_TEMPERATURE = 32;
-// };
 
 Thermostat.prototype.isSavingModeOn = function() {
 	return this.savingModeOn;
@@ -61,20 +51,3 @@ Thermostat.prototype.energyUsage = function() {
 		return 'High'
 	}
 };
-
-// Console tests
-// var t = new Thermostat();
-// console.log(t.getTemperature());
-// console.log(t._MAXIMUM_TEMPERATURE);
-// console.log(t.energyUsage());
-// console.log(t.isSavingModeOn());
-// t.toggleSavingMode();
-// console.log(t.isSavingModeOn());
-// t.toggleSavingMode();
-// console.log(t.isSavingModeOn());
-// t.down();
-// t.down();
-// t.down();
-// console.log(t.getTemperature());
-// t.reset();
-// console.log(t.getTemperature());
