@@ -5,9 +5,6 @@ jQuery(document).ready(function($) {
 			dataType : "jsonp",
 			success : function(parsed_json) {
 				var location = parsed_json['current_observation']['display_location']['city'];
-				for(item in location){
-					console.log(item);
-				}
 				var temp_c = parsed_json['current_observation']['temp_c'];
 				$('#current-temperature').html("<h1>Current temperature in " + location + " is " + temp_c + " &#8451;</h1>");
 			}
