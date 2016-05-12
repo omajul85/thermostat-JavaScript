@@ -40,5 +40,18 @@ $(document).ready(function(){
 		txt += "<h1>" + thermostat.getTemperature() + " &#8451;</h1>";
 		return txt;
 	}
+
+	// function saveStatus(){
+	// 	$.ajax({
+	// 		type: "POST",
+	// 		url: "http://localhost:4567/status",
+	// 		data: { name: "John", time: "2pm" },
+	// 		dataType: "jsonp",
+	// 		// Work with the response
+	// 		success: function( response ) {
+ //        console.log( response ); // server response
+ //      }
+ //    });
+	// }
 });
 
