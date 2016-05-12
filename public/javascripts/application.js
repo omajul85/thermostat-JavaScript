@@ -30,6 +30,14 @@ $(document).ready(function(){
 		updateTemperature();
 	});
 
+	$("#get-status").click(function(){
+		getStatus();
+	});
+
+	$("#post-status").click(function(){
+		postStatus(thermostat.getTemperature(), thermostat.savingModeOn);
+	});
+
 	function updateTemperature(){
 		$('#temperature').attr('class', thermostat.energyUsage());
 		$("#temperature").html(formatTemperature());
@@ -41,17 +49,34 @@ $(document).ready(function(){
 		return txt;
 	}
 
-	// function saveStatus(){
-	// 	$.ajax({
-	// 		type: "POST",
-	// 		url: "http://localhost:4567/status",
-	// 		data: { name: "John", time: "2pm" },
-	// 		dataType: "jsonp",
-	// 		// Work with the response
-	// 		success: function( response ) {
- //        console.log( response ); // server response
- //      }
- //    });
-	// }
+	function getStatus(){
+		res = $.getJSON('http://localhost:4567/status', function(data){ 
+			res = data
+			thermostat._temperature = res.temperature;
+			thermostat.savingModeOn = res.power;
+			updateTemperature();
+			if(thermostat.savingModeOn){
+				$("#power-saving-status").text("ON");
+				$("#PSM").attr("src", "public/images/psm_on.png");
+			} else {
+				$("#power-saving-status").text("OFF");
+				$("#PSM").attr("src", "public/images/psm_off.png");
+			}
+		});
+	}
+
+	function postStatus(temperature, power){
+		console.log("Hello there!");
+		$.ajax
+		({
+			type: "POST",
+			url: 'http://localhost:4567/status',
+			dataType: 'json',
+			data: JSON.stringify({"temperature":temperature,"power":power}),
+			success: function () {
+				alert("Thanks!"); 
+			}
+		})
+	}
 });
 
