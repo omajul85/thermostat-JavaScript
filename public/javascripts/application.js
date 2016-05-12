@@ -6,13 +6,7 @@ $(document).ready(function(){
 		thermostat.toggleSavingMode();
 		updateTemperature();
 		$("#temperature").html(formatTemperature(thermostat));
-		if($(this).attr("src") == "public/images/psm_off.png"){
-			$(this).attr("src", "public/images/psm_on.png");
-			$("#power-saving-status").text("ON");
-		} else {
-			$(this).attr("src", "public/images/psm_off.png");
-			$("#power-saving-status").text("OFF");
-		}
+		updatePSM();
 	});
 
 	$("#up").click(function(){
@@ -28,6 +22,7 @@ $(document).ready(function(){
 	$("#reset").click(function(){
 		thermostat.reset();
 		updateTemperature();
+		updatePSM();
 	});
 
 	$("#get-status").click(function(){
@@ -43,6 +38,16 @@ $(document).ready(function(){
 		$("#temperature").html(formatTemperature());
 	}
 
+	function updatePSM(){
+		if(thermostat.savingModeOn){
+			$("#power-saving-status").text("ON");
+			$("#PSM").attr("src", "public/images/psm_on.png");
+		} else {
+			$("#power-saving-status").text("OFF");
+			$("#PSM").attr("src", "public/images/psm_off.png");
+		}
+	}
+
 	function formatTemperature(){
 		var txt = "";
 		txt += "<h1>" + thermostat.getTemperature() + " &#8451;</h1>";
@@ -53,15 +58,11 @@ $(document).ready(function(){
 		res = $.getJSON('http://localhost:4567/status', function(data){ 
 			res = data
 			thermostat._temperature = res.temperature;
-			thermostat.savingModeOn = res.power;
 			updateTemperature();
-			if(thermostat.savingModeOn){
-				$("#power-saving-status").text("ON");
-				$("#PSM").attr("src", "public/images/psm_on.png");
-			} else {
-				$("#power-saving-status").text("OFF");
-				$("#PSM").attr("src", "public/images/psm_off.png");
+			if(thermostat.savingModeOn != res.power){
+				thermostat.toggleSavingMode();
 			}
+			updatePSM();
 		});
 	}
 

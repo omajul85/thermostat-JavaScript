@@ -16,6 +16,9 @@ Thermostat.prototype.getTemperature = function() {
 
 Thermostat.prototype.reset = function() {
 	this._temperature = this._DEFAULT_TEMPERATURE;
+	if(!this.savingModeOn){
+		this.toggleSavingMode();
+	}
 };
 
 Thermostat.prototype.up = function() {
