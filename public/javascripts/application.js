@@ -1,4 +1,6 @@
-$(document).ready(function(){
+"use strict";
+
+$(document).ready(function($){
 	var thermostat = new Thermostat();
 	updateTemperature();
 	
@@ -55,8 +57,9 @@ $(document).ready(function(){
 	}
 
 	function getStatus(){
+		var res;
 		res = $.getJSON('http://localhost:4567/status', function(data){ 
-			res = data
+			res = data;
 			thermostat._temperature = res.temperature;
 			updateTemperature();
 			if(thermostat.savingModeOn != res.power){
@@ -67,17 +70,13 @@ $(document).ready(function(){
 	}
 
 	function postStatus(temperature, power){
-		console.log("Hello there!");
-		$.ajax
-		({
+		$.ajax({
 			type: "POST",
 			url: 'http://localhost:4567/status',
 			dataType: 'json',
-			data: JSON.stringify({"temperature":temperature,"power":power}),
-			success: function () {
-				alert("Thanks!"); 
-			}
-		})
+			data: JSON.stringify({"temperature":temperature,"power":power})
+		});
 	}
+
 });
 

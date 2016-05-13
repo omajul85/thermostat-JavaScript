@@ -37,7 +37,7 @@ Thermostat.prototype.toggleSavingMode = function() {
 	this.savingModeOn = !this.savingModeOn;
 	this._MAXIMUM_TEMPERATURE = this.savingModeOn ? this._MAX_TEMPERATURE_PSM_ON : this._MAX_TEMPERATURE_PSM_OFF;
 	if(this.savingModeOn && this.getTemperature() > this._MAX_TEMPERATURE_PSM_ON){
-		this._temperature = this._MAX_TEMPERATURE_PSM_ON
+		this._temperature = this._MAX_TEMPERATURE_PSM_ON;
 	}
 };
 
@@ -47,10 +47,10 @@ Thermostat.prototype.isSavingModeOn = function() {
 
 Thermostat.prototype.energyUsage = function() {
 	if(this.getTemperature() < 18){
-		return 'Low'
+		return 'Low';
 	} else if(this.getTemperature() >=18 && this.getTemperature() < 25){
-		return 'Medium'
+		return 'Medium';
 	} else {
-		return 'High'
+		return 'High';
 	}
 };
